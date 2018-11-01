@@ -1,0 +1,69 @@
+<!-- 
+    Andrew Lorenz 10/31/2018 
+    Learning the fundamentals of arrays,  the native JS setTimout function, and how to center text in a DIV
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        div{color:white; font-size:1.5em; font-weight: bold;
+        display: flex; justify-content: center; align-items: center; /* to center the text in each color box */
+        /* text-align: center;  */
+        height: 100px; width: 300px; background-color: green;}
+
+        button{font-size: 1.53m; font-weight: bold; height: 75px; width: 100px;}
+    </style>
+</head>
+<body>
+
+    <h1 id="colors">Click button for colors!</h1>
+    <div>Green</div><br>
+    <div>Green</div><br>
+    <div>Green</div><br>
+    <div>Green</div><br>
+    <div>Green</div><br><br>
+    <button class="btn" onclick="up()">Red!</button>
+    <button class="btn" onclick="down()">Blue!</button>
+
+    <script>
+        var i = 0;
+        var j = 0;
+        var divs = document.getElementsByTagName('div');
+        var btns = document.getElementsByClassName('btn');
+        
+        function up() {
+            {
+                if (i < divs.length) {
+                    divs[i].style.backgroundColor= "red";
+                    divs[i].innerHTML = "Red";
+                    btns[0].innerHTML = "Done";
+                    i++;
+                    window.setTimeout(up, 500);
+                }
+            }
+        };
+        // Notice that these functions will continue to run and consume CPU resources even after all boxes have changed colors.  
+        // See the coutput from the console.log statements.  
+        function down() {
+            if (j < divs.length) {
+                divs[j].style.backgroundColor = "blue";
+                divs[j].innerHTML = "Blue";
+                btns[1].innerHTML = "Done";
+                j++;
+                console.log(j);  // debug statement
+                // Moving this statement inside the if clause, causes the function to only be called one more time after all boxes have changed .  
+                window.setTimeout(down, 150); 
+            }
+            console.log(j);  // debug statement
+            //window.setTimeout(down, 150); // This statement, when placed after the if statement, creates an infinite loop
+        };
+    </script>
+
+
+</body>
+</html>
