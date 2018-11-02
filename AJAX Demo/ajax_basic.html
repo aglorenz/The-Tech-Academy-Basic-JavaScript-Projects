@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- 
+    Author:     Andrew Lorenz
+    Date:       11/1/2018
+    Purpose:    Demonstrate requesting information from a webserver and displaying it on your existing webpage.  The request 
+                is initiated by user button click.
+    Note:
+    To run this demo on your local PC, open the XAMPP control panel and start the Apache server.
+    Copy the files:  ajax_basic.html, content.html, style.css 
+    To the folder:  c:/xampp/htdocs
+    Pull ajax_basic.html into a browser and click the button on the webpage! 
+-->
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Basic AJAX Demo</title>
+		<link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="main">
+			<h2>Get The Latest Content:</h2>
+			<div class='content' id="content">
+				<input type="button" class="button" value="Get Content" id="btn_content" onclick="getContent();"/>
+			</div>
+		<script type="text/javascript">
+			 
+        // STEP 1: setup the xml http request object
+        var ajax = new XMLHttpRequest();
+
+        // STEP 2: prepare the open AJAX request
+        ajax.open('GET', 'content.html');
+
+        // STEP 3: define the AJAX response callback method
+        ajax.onreadystatechange = function() {
+            if (ajax.readyState = 4) {
+                document.getElementById('content').innerHTML = ajax.responseText;
+            }
+        }        
+
+        // STEP 4: send the AJAX request for data
+        function getContent() {
+            ajax.send();
+            document.getElementById('btn_content').style.display = 'none';  // Hide the button so we can display the response
+        }
+
+
+
+		</script>
+    </body>
+</html>
