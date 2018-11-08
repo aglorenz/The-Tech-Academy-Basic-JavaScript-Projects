@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- 
+    Author:     Andrew Lorenz
+    Date:       11/8/2018
+    Purpose:    Given a user input of seconds, display countdown to zero.  When zero is reached,
+                display an alert, "Time's up!"
+    Notes:      I went beyond the exercise to stop the countdown loop at zero.  Previously, it would continue
+                the countdown after user clicks OK on the alert.
+                On Firefox:  countdown displays 0 at the same time as the alert <-- desired
+                on Edge, Chrome, countdown displays 1, then the alert, then 0 after user clicks OK <--undesireable
+ -->
+<html>
+<body>
+    <p>How many seconds would you like to set your alarm for?</p>
+    <input id="seconds" value="" />
+    <button onclick="countdown()">Click here</button>
+    <p id="timer"></p>
+
+    <script>
+        function countdown() {
+            var seconds = document.getElementById("seconds").value; 
+            function tick() {
+                timer.innerHTML = seconds;
+                seconds = seconds - 1;
+                if(seconds >=0){
+                    setTimeout(tick, 1000);
+                } else {
+                    // timer.innerHTML = seconds;
+                    alert("Time's up!");
+                } 
+            }
+                tick();
+        }
+
+    </script>
+</body>
+</html>
